@@ -4,7 +4,7 @@ const seedContent = require('./contentData');
 const seedComment = require('./commentData')
 
 const seedAll = async () => {
-  await sequelize.sync({ force: false });
+  await sequelize.sync({ force: true });
 
   await seedUser();
   
