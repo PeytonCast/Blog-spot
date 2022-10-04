@@ -12,17 +12,13 @@ Content.init(
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
-          },
+        },
         title: {
             type: DataTypes.STRING,
             allowNull: false,
-          },
+        },
         text: {
             type: DataTypes.STRING,
-            allowNull: false,
-        },
-        date: {
-            type: DataTypes.DATE,
             allowNull: false,
         },
         user_id: {
@@ -31,7 +27,7 @@ Content.init(
               model: 'user',
               key: 'id',
             },
-          },
+        },
     },
     {
         sequelize,

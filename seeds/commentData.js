@@ -4,17 +4,14 @@ const { Comment } = require('../models');
 const commentData = [
     {
        text: "I'm so excited!",
-       date: "December 22, 2021 20:30:00",
        content_id: 1
     },
     {
         text: "I prefer classes.",
-        date: "September 15, 2022 20:20:00",
         content_id: 2
      },
      {
         text: "this is so convenent",
-        date: "January 26, 2022 10:30:00",
         content_id: 3
      }
 
