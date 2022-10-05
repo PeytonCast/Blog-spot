@@ -1,0 +1,28 @@
+<section class="content">
+  <div class="content-details">
+    <h2>{{content.title}}</h2>
+    <p>By: {{content.user.username}}</p>
+    <p>{{content.text}}</p>
+    <p>Posted on {{format_date content.createdAt}}</p>
+    <div>
+      {{!-- TODO WIRE THE LEAVE A COMMENT --}}
+      <h3>Leave a comment</h3>
+      <form action="/comment" method="POST">
+      <textarea class="comment" placeholder="type your comment here."></textarea>
+      <br>
+      <input type="submit" name="submit" value="Send">
+    </form>
+    </div>
+    <div>
+    {{#each content.comments}}
+    <div>
+      <h4>{{this.user.username}}</h4>
+      <p>{{this.text}}</p>
+      <p>Posted on {{format_date this.createdAt}}</p>
+    </div>
+    {{/each}}
+    </div>
+    
+  </div>
+  
+</section>

@@ -1,0 +1,15 @@
+<section >
+
+  {{#each info.contents}}
+    <div class="card">
+    <h1>{{this.title}}</h1>
+    <p>{{this.text}}</p>
+    <p>{{format_date this.createdAt}}</p>
+     <button id="delete">delete</button>
+     <button id="edit">edit</button>
+    </div>
+  {{/each}}
+    
+
+  
+</section>

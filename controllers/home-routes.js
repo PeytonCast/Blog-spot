@@ -6,17 +6,17 @@ const { Comment, Content, User } = require('../models');
 router.get('/', async (req, res) => {
   try {
     const dbContentData = await Content.findAll({
-      include: [{model: Comment, attributes: ['text', 'commented_user']}]});
+      include: [{model: User}]});
 
     // maps data for handlebars
-    // const contents = dbContentData.map((content) =>
-    //   content.get({ plain: true })
-    // );
-    // res.render('homepage', {
-    //   contents,
+    const contents = dbContentData.map((content) =>
+      content.get({ plain: true })
+    );
+    res.render('home', {
+      contents,
     //   loggedIn: req.session.loggedIn,
-    // });
-    res.json(dbContentData) 
+    });
+    //   res.json(dbContentData) 
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -28,17 +28,51 @@ router.get('/', async (req, res) => {
 router.get('/content/:id', async (req, res) => {
     try {
       const dbContentData = await Content.findByPk(req.params.id, {
-        include: [{model: Comment}],
+        include: [{model: Comment,  include:[{model: User}]}, {model: User}],
       });
   
-    //   const content = dbContentData.get({ plain: true });
-    //   res.render('content', { content, loggedIn: req.session.loggedIn });
-     res.json(dbContentData)
+    const content = dbContentData.get({ plain: true });
+    res.render('contentDetails', { content, loggedIn: req.session.loggedIn });
+    //  res.json(dbContentData)
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
     }
   });
+
+router.get('/dashboard/:id', async (req, res) => {
+    try {
+      const data = await User.findByPk(req.params.id, {
+        include: [{model: Content}]
+      });
+  
+    const info = data.get({ plain: true });
+    res.render('dashboard', { info, loggedIn: req.session.loggedIn });
+    //  res.json(data)
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  });
+
+router.post('/comment', async (req, res) => {
+    // if (req.session.loggedIn) {
+       try {
+        Comment.create({
+            text: req.body.text,
+            content_id: req.body.content_id,
+            commented_user: req.body.commented_user
+          })
+          res.status(201).json()
+       }
+       catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+       }
+    //   } else {
+        // res.status(404).end();
+    //   }
+})
   
  
   
