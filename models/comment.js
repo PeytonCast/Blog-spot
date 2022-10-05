@@ -20,14 +20,23 @@ Comment.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-
+        // this is what article the comment belongs to 
         content_id: {
             type: DataTypes.INTEGER,
             references: {
               model: 'content',
               key: 'id',
             },
-          },
+        },
+        // this is who commented to the article
+        commented_user: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'user',
+                key: 'id',
+              },
+        }
+
     },
     {
         sequelize,
