@@ -7,14 +7,14 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const helpers = require('./utils/helpers');
-const { fstat } = require('fs');
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
+// seting max age to 24 hours
 const sess = {
   secret: 'blogings for dweebs',
-  cookie: {},
+  cookie: { maxAge: 24 * 60 * 60 * 10000},
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({

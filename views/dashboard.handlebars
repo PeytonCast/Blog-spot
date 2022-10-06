@@ -1,7 +1,18 @@
-<section >
+<h2>Dashboard</h2>
 
+<form class="post-form">
+    <label for="title"><b>Title</b></label> <br>
+    <input type="text" id="post-title" name="title" placeholder="Title"> <br>
+    <label for="new_post"><b>New Post</b></label> <br>
+    <textarea name="new_post" id="newpost" cols="30" rows="10" placeholder="Type your thoughts here!"></textarea> <br>
+    <button type="submit">Post</button>
+</form>
+
+<section >
+  <h4>Previous Posts:</h4>
   {{#each info.contents}}
-    <div class="card">
+    
+    <div class="card" id="post-id-{{this.id}}">
     <h1>{{this.title}}</h1>
     <p>{{this.text}}</p>
     <p>{{format_date this.createdAt}}</p>
@@ -9,7 +20,5 @@
      <button id="edit">edit</button>
     </div>
   {{/each}}
-    
-
-  
 </section>
+<script src="/js/posts.js"></script>

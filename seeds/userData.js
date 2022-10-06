@@ -8,7 +8,7 @@ const userData = [
     },
     {
       username: "Java_Lava",
-      password: "password"
+      password: "$2b$10$PVVGC86CcDxNcejqbC3OrOwoiTP2tF.O2F/j83xT6v3PsH/MdNdLS"
      },
     {
       username: "angry.Coder",

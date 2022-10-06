@@ -26,6 +26,10 @@ router.get('/', async (req, res) => {
 
 // GET a specific artical
 router.get('/content/:id', async (req, res) => {
+    if (!req.session.loggedIn){
+        res.redirect('/login')
+        res.render('login');
+       } else{
     try {
       const dbContentData = await Content.findByPk(req.params.id, {
         include: [{model: Comment,  include:[{model: User}]}, {model: User}],
@@ -38,11 +42,15 @@ router.get('/content/:id', async (req, res) => {
       console.log(err);
       res.status(500).json(err);
     }
-  });
+  }});
 
 router.get('/dashboard', async (req, res) => {
     //i need this route to know who is logged in and get all there prev posts 
    //use sess user id to get specifc data for that user
+   if (!req.session.loggedIn){
+    res.redirect('/login')
+    res.render('login');
+   } else{
     try {
       const data = await User.findByPk(req.session.userId, {
         include: [{model: Content}]
@@ -55,7 +63,7 @@ router.get('/dashboard', async (req, res) => {
       console.log(err);
       res.status(500).json(err);
     }
-  });
+  }});
 
 router.post('/comment', async (req, res) => {
     // if (req.session.loggedIn) {
