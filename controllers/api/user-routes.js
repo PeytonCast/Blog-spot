@@ -78,6 +78,57 @@ router.post('/post', async (req, res) =>
       }
 });
 
+router.post('/comment', async (req, res) => 
+{if (!req.session.loggedIn){
+    res.redirect('/login')
+    res.render('login');
+   } else{
+    try {
+        const sendData = await Comment.create({
+          text: req.body.text,
+          content_id: req.body.content_id,
+          commented_user: req.session.userId
+        })
+        res.status(201).json(sendData);
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+      }
+}});
+// update content
+router.put('/update/:id', async (req, res) => {
+    try {
+        const updateData = await Content.update(
+        {
+            title: req.body.title,
+            text: req.body.text
+        },
+        {where: {
+            id: req.params.id,
+          }
+        })
+        res.status(200).json({updateData, message: 'article successfuly updated' });
+        
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+})
+
+// delete content
+router.delete('/:id', async (req, res) => {
+    try {
+        const deleteData = await Content.destroy({where: {id: req.params.id}})
+        res.status(200).json({deleteData});
+        
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+})
+
+
 //logout
 router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {

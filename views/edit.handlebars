@@ -1,0 +1,18 @@
+<div class="content-edit">
+
+  <form class="edit-form">
+    <label for="title-ed"><b>Edit Title:</b></label> <br>
+    <input name="title-ed"type="text" id="edit-title" value="{{content.title}}"> <br>
+    <label for="text-ed"><b>Edit Text:</b></label> <br>
+    <textarea cols="30" rows="10" id="edit-text">{{content.text}}</textarea> <br>
+    <input type="submit" value="Save Changes">
+  </form> <br> <br>
+  <form class="delete-form">
+    <textarea id="delete-id" hidden>{{content.id}}</textarea>
+    <label for="delete"><b>Warning deleting a post is non reversable!</b></label> <br>
+    <input name="delete" id="delete-btn" type="submit" value="Delete Post">
+  </form>
+    
+<div>
+
+<script src="/js/edit.js"></script>

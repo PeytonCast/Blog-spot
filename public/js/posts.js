@@ -1,9 +1,8 @@
 const postFormHandler = async (event) => {
     event.preventDefault();
-  
     const title = document.querySelector('#post-title').value.trim();
     const text = document.querySelector('#newpost').value.trim();
-    //  checks username and password
+    
     if (title && text) {
       const response = await fetch('/api/users/post', {
         method: 'POST',
@@ -18,6 +17,8 @@ const postFormHandler = async (event) => {
       }
     }
   };
-  document
-    .querySelector('.post-form')
-    .addEventListener('submit', postFormHandler);
+  document.getElementById('postART').addEventListener('click', postFormHandler);
+
+  
+  
+  

@@ -5,19 +5,22 @@
     <input type="text" id="post-title" name="title" placeholder="Title"> <br>
     <label for="new_post"><b>New Post</b></label> <br>
     <textarea name="new_post" id="newpost" cols="30" rows="10" placeholder="Type your thoughts here!"></textarea> <br>
-    <button type="submit">Post</button>
+    <button id="postART">Post</button>
 </form>
 
 <section >
   <h4>Previous Posts:</h4>
   {{#each info.contents}}
-    
     <div class="card" id="post-id-{{this.id}}">
     <h1>{{this.title}}</h1>
     <p>{{this.text}}</p>
     <p>{{format_date this.createdAt}}</p>
-     <button id="delete">delete</button>
-     <button id="edit">edit</button>
+    {{!-- <form id="delete-{{this.id}}" name="delete-form">
+        <textarea hidden name="delete-where" id="deleteART">{{this.id}}</textarea>
+        <input  type="submit" value="delete">
+    </form> --}}
+     <a href="/edit/{{this.id}}">edit</a>
+     {{!-- <button id="edit">edit</button> --}}
     </div>
   {{/each}}
 </section>

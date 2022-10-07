@@ -65,25 +65,24 @@ router.get('/dashboard', async (req, res) => {
     }
   }});
 
-router.post('/comment', async (req, res) => {
-    // if (req.session.loggedIn) {
-       try {
-        Comment.create({
-            text: req.body.text,
-            content_id: req.body.content_id,
-            commented_user: req.body.commented_user
-          })
-          res.status(201).json()
-       }
-       catch (err) {
-        console.log(err);
-        res.status(500).json(err);
-       }
-    //   } else {
-        // res.status(404).end();
-    //   }
-})
+ router.get('/edit/:id', async (req, res) => {
+    if (!req.session.loggedIn){
+        res.redirect('/login')
+        res.render('login');
+       } else{
+    try {
+      const dbContentData = await Content.findByPk(req.params.id, {
+        include: [{model: Comment}],
+      });
   
+    const content = dbContentData.get({ plain: true });
+    res.render('edit', { content, loggedIn: req.session.loggedIn });
+    //  res.json(dbContentData)
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  }});
  
   
   // Login route
