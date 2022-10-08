@@ -1,17 +1,17 @@
 <div class="content-edit">
 
-  <form class="edit-form">
+  <form class="edit-form ml-5 mr-5">
     <label for="title-ed"><b>Edit Title:</b></label> <br>
-    <input name="title-ed"type="text" id="edit-title" value="{{content.title}}"> <br>
+    <input class="form-control"  name="title-ed"type="text" id="edit-title" value="{{content.title}}"> <br>
     <label for="text-ed"><b>Edit Text:</b></label> <br>
-    <textarea cols="30" rows="10" id="edit-text">{{content.text}}</textarea> <br>
+    <textarea class="form-control" cols="30" rows="10" id="edit-text">{{content.text}}</textarea> <br>
     <textarea id="edit-id" hidden>{{content.id}}</textarea> <br>
-    <input type="submit" value="Save Changes">
+    <input class="btn btn-success px-5" type="submit" value="Save Changes">
   </form> <br> <br>
-  <form class="delete-form">
+  <form class="delete-form ml-5 mr-5">
     <textarea id="delete-id" hidden>{{content.id}}</textarea>
-    <label for="delete"><b>Warning deleting a post is non reversable!</b></label> <br>
-    <input name="delete" id="delete-btn" type="submit" value="Delete Post">
+    <label for="delete"><b>Warning deleting a post is irreversible!</b></label> <br>
+    <input class="btn btn-danger" name="delete" id="delete-btn" type="submit" value="Delete Post">
   </form>
     
 <div>

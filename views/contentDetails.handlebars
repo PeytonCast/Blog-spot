@@ -1,24 +1,25 @@
 <section class="content">
-  <div class="content-details">
-    <h2>{{content.title}}</h2>
+  <h2 class="ml-3">{{content.title}}</h2>
+  <div class="content-details mr-5 ml-5">
     <p>By: {{content.user.username}}</p>
     <p>{{content.text}}</p>
     <p>Posted on {{format_date content.createdAt}}</p>
     <div>
-      <h3>Leave a comment</h3>
-    <form action="/comment" method="POST" id="{{content.id}}" class="comment-form">
+      <h4 class="ml-2">Leave a comment:</h4>
+    <form action="/comment" method="POST" id="{{content.id}}" class="comment-form mr-5 ml-4">
       <textarea id="content-id" hidden>{{content.id}}</textarea>
-      <textarea class="comment"  id="comment-text" placeholder="type your comment here."></textarea>
+      <textarea class="comment form-control"  id="comment-text" placeholder="type your comment here."></textarea>
       <br>
-      <button id="send-comment">Send</button>
+      <button class="btn btn-success px-4" id="send-comment">Send</button>
     </form>
     </div>
-    <div>
+
+    <div class="mt-4">
     {{#each content.comments}}
-    <div>
-      <h4>{{this.user.username}}</h4>
+    <div class="card card-body d-flex flex-column border border-info mb-2">
+      <h5>{{this.user.username}},</h5> 
       <p>{{this.text}}</p>
-      <p>Posted on {{format_date this.createdAt}}</p>
+      <p class="text-muted" >{{format_date this.createdAt}}</p>
     </div>
     {{/each}}
     </div>

@@ -74,7 +74,7 @@ router.get('/dashboard', async (req, res) => {
       res.redirect('/')
       return
      } 
-     else{n  c.jk x
+     else{
     try {
       const dbContentData = await Content.findByPk(req.params.id);
   
