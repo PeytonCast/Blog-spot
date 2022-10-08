@@ -66,16 +66,20 @@ router.get('/dashboard', async (req, res) => {
   }});
 
  router.get('/edit/:id', async (req, res) => {
-    if (!req.session.loggedIn){
-        res.redirect('/login')
-        res.render('login');
-       } else{
+    // checks to see if the content to be acessed belongs to user
+    const checkId = await Content.findByPk(req.params.id)
+    const content = checkId.get({ plain: true });
+    
+    if (content.user_id != req.session.userId){
+      res.redirect('/')
+      return
+     } 
+     else{n  c.jk x
     try {
-      const dbContentData = await Content.findByPk(req.params.id, {
-        include: [{model: Comment}],
-      });
+      const dbContentData = await Content.findByPk(req.params.id);
   
     const content = dbContentData.get({ plain: true });
+  
     res.render('edit', { content, loggedIn: req.session.loggedIn });
     //  res.json(dbContentData)
     } catch (err) {
@@ -94,6 +98,7 @@ router.get('/dashboard', async (req, res) => {
     res.render('login');
   });
 
+  
   router.get('/signup', (req, res) => {
     if (req.session.loggedIn) {
       res.redirect('/');

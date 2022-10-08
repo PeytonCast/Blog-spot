@@ -22,7 +22,8 @@ Comment.init(
         },
         // this is what article the comment belongs to 
         content_id: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.UUID,
+            unique: true,
             references: {
               model: 'content',
               key: 'id',

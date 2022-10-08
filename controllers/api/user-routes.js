@@ -97,8 +97,18 @@ router.post('/comment', async (req, res) =>
       }
 }});
 // update content
-router.put('/update/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
+
     try {
+      
+      // checks to see if the content to be updated belongs to user
+      const checkId = await Content.findByPk(req.params.id)
+      const content = checkId.get({ plain: true });
+      
+      if (content.user_id != req.session.userId){
+        return
+       } 
+       else{
         const updateData = await Content.update(
         {
             title: req.body.title,
@@ -110,7 +120,7 @@ router.put('/update/:id', async (req, res) => {
         })
         res.status(200).json({updateData, message: 'article successfuly updated' });
         
-    } catch (err) {
+    }} catch (err) {
         console.log(err);
         res.status(500).json(err);
     }
@@ -119,10 +129,18 @@ router.put('/update/:id', async (req, res) => {
 // delete content
 router.delete('/:id', async (req, res) => {
     try {
+      // checks to see if the content to be deleted belongs to user
+      const checkId = await Content.findByPk(req.params.id)
+      const content = checkId.get({ plain: true });
+      
+      if (content.user_id != req.session.userId){
+        return
+       } 
+       else{
         const deleteData = await Content.destroy({where: {id: req.params.id}})
         res.status(200).json({deleteData});
         
-    } catch (err) {
+    }} catch (err) {
         console.log(err);
         res.status(500).json(err);
     }
