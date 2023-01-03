@@ -1,6 +1,7 @@
 const { User } = require('../models');
 // this is the seeding for the content and the content is basicly an article
 // so we have the articles' title, text, date, and the user who wrote it
+// extra comment
 const userData = [
     {
        username: "C_Engineer",
