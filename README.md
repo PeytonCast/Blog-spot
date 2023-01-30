@@ -1,6 +1,5 @@
 # Blog-spot
-This is a full stack blog that i built from scratch its not perfect but its the first of many I will build
-I've learned a lot through this exprience and i would definitely say this was te hardest challenge I've come across.
+Blog Spot is an open-source project hosted on GitHub, developed by PeytonCast. It is a simple blogging platform for users to create and share their articles and thoughts with the world. The platform provides users with a clean and intuitive user interface, making it easy for anyone to get started with blogging. The project is built using modern web technologies, ensuring it is fast and responsive, and it can be easily customized to fit the needs of individual users. If you are looking for a simple, yet powerful platform to share your ideas and thoughts, Blog Spot is definitely worth checking out.
 Click the link to try it out [blog spot](https://blog-spot-3.herokuapp.com/)
 
 ![image](https://user-images.githubusercontent.com/107663364/194929330-86cc5167-fdd1-4046-a2da-eef643aa2ddd.png)
